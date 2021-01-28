@@ -1,14 +1,111 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>My test page</title>
-    <link href="styles/style.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-    <p>My test web</p>
-    <img src="images/ふくろう.jpg" alt="My test image">
-    <p>フクロウ</p>
-    <script src="scripts/main.js"></script>
-  </body>
+<html lang='ja'>
+<head><link href="styles/style1.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <H1>M1 macにopencvをソースからインストール</H1>
+  <h3>mac 必要ソフトインストール</h3>
+    <ol>
+      <li>Command Line Tool for Xcodeをインストールする。</li>
+      <li>homebrewを/opt/homebrew下にインストールする。</li>
+      <li>cmake、qt、ffmpegをインストールする。</li>
+      <li>macに最適化されたtennsorflow_macosをインストールする。</li>
+      <ul>
+        <li>command line toolのpython3.8.2でtensor仮想環境を作る。</li>
+        <li>/Library/Developer/CommandLineTools/bin/python3 -m venv /Users/username/.virtualenvs/tensor </li>
+        <li>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)" </li>
+                を実行する。<br>
+        <li>仮想環境ディレクトリを聞かれるので/Users/username/.virtualevnvs/tennsor <li>
+               これでnumpy 1.18.4もインストールされる。<br>
+        </li>
+      </ul>
+    </ol>
+        
+    <h3>opencvをダウンロード</h3>
+    <pre>
+    https://github.com/opencv/opencv.git　　から最新バージョンをダウンロードする。
+    https://github.com/opencv/opencv_contrib.git　　から最新バージョンをダウンロードする。</pre>>
+    <H3>DownLoadsホルダーから/Users/usernameへそれぞれ移動する。</h3>
+
+    <p>ディレクトリはそれぞれopencv-4.5.1及びopencv_contrib-4.5.1であった。<br>
+        opencvのインストール先を~/installation/opencvにする。<br>
+    <pre>
+    %mkdir installation
+    %cd opencv-4.5.1
+    %mkdir build
+    %cd build
+    %QT5PATH=/opt/homebrew/Cellar/qt/5.15.2
+    %cmake -D CMAKE_BUILD_TYPE=RELEASE \
+    -D CMAKE_INSTALL_PREFIX=~/installation/opencv \
+    -D CMAKE_SYSTEMPROSSOR=arm64 \
+    -D CMAKE_OSX_ARCHITECTURES=arm64 \
+    -D WITH_V4L=ON \
+    -D OPENCV_SKIP_PYTHON_LOADER=ON \
+    -D OPENCV_ENABLE_NONFREE=ON \
+    -D CMAKE_PREFIX_PATH=$QT5PATH \
+    -D CMAKE_MODULE_PATH="$QT5PATH"/lib/cmake \
+    -D BUILD_opencv_python2=OFF \
+    -D BUILD_opencv_python3=ON \
+    -D HAVE_opencv_python3=ON \
+    -D OPENCV_PYTHON3_EXECUTABLE=~/.virtualenvs/tensor/bin/python3 \
+    -D OPENCV_INCLUDE_DIR=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/include/python3.8 \
+    -D OPENCV_LIBRARIES=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/libpython3.8.dylib \
+    -D PYTHON3_NUMPY_INCLUDE_DIRS=~/.virtualenvs/tensor/lib/python3.8/site-packages/numpy/core/include \
+    -D WITH_QT=ON \
+    -D WITH_OPENGL=ON \
+    -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-4.5.1/modules ..
+    %make -j8
+    %cd ~</pre>
+  <p>仮想環境に入り、pythonでCV2の確認をする。</p>
+  <pre>
+  %source/tensor/bin/activate
+  (tensor)%python
+  >>>import cv2
+  >>>cv2.__version__
+  >>>'4.5.1'
+  >>>exit(0)
+  (tensor)%deactivate
+  %</pre>
+  <p>cppプログラムのビルド、test.cpp、CMakeLists.txtはファイルを作成する。</p>
+  <pre>
+    //test.cpp
+    #include <iostream>
+    #include "opencv2/opencv.hpp"
+    int main(int argc, const char* argv[])
+    {
+        // 画像データをファイルから読み込む
+        cv::Mat src = cv::imread("????.jpg", cv::IMREAD_COLOR);
+        // 画像の読み込みに失敗したらエラー終了する
+        if(src.empty())
+        {
+          std::cerr << "ファイルのオープンに失敗しました。" << std::endl;
+          return -1; 
+        }
+        cv::namedWindow("image", cv::WINDOW_NORMAL);
+        cv::imshow("image", src);
+        int k = cv::waitKey(0);
+        cv::destroyAllWindows();
+        return 0;
+      }</pre>
+  <pre>
+  #CMakeLists.txt
+  cmake_minimum_required(VERSION 3.1)
+  project( test100 )
+  SET(OpenCV_DIR ~/installation/opencv/lib/cmake/opencv4)
+  find_package(OpenCV REQUIRED)
+  add_executable( test test.cpp )
+  target_link_libraries(test ${OpenCV_LIBS})</pre>
+  <p>test.cppのビルド</p>
+  <pre>
+  %mkdir build
+  %cmake ..
+  %make</pre>
+<p>参考</p>
+<ul>
+  奥村　晴彦様の<a href="https://oku.edu.mie-u.ac.jp/~okumura/macosx/m1.html">M1 MAC</a>
+</ul>
+<footer>
+<p>2020/01/28 by kimura</p>
+</footer>
+</body>
 </html>

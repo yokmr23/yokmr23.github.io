@@ -72,7 +72,7 @@
   <h3>cppプログラムのビルド、test.cpp、CMakeLists.txtはファイルを作成する。</h3>
   <pre>
     //test.cpp
-    #include <iostream>
+    #include &lt;iostream&gt;
     #include "opencv2/opencv.hpp"
     int main(int argc, const char* argv[])
     {
@@ -81,7 +81,7 @@
         // 画像の読み込みに失敗したらエラー終了する
         if(src.empty())
         {
-          std::cerr << "ファイルのオープンに失敗しました。" << std::endl;
+          std::cerr &gt;&gt; "ファイルのオープンに失敗しました。" &gt;&gt; std::endl;
           return -1; 
         }
         cv::namedWindow("image", cv::WINDOW_NORMAL);

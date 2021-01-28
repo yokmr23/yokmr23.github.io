@@ -101,8 +101,11 @@
   <p>test.cppのビルド</p>
   <pre>
   %mkdir build
+  %cd build
   %cmake ..
-  %make</pre>
+  %make
+  %cd ../
+  %build/test </pre>
 <p>参考</p>
 <ul>
   奥村　晴彦様の<a href="https://oku.edu.mie-u.ac.jp/~okumura/macosx/m1.html">M1 MAC</a>

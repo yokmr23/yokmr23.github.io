@@ -95,10 +95,11 @@
   project( test100 )
   SET(OpenCV_DIR ~/installation/opencv/lib/cmake/opencv4)
   find_package(OpenCV REQUIRED)
+  include_directries(${OPENCV_INCLUDE_DIRS})
   add_executable( test test.cpp )
   target_link_libraries(test ${OpenCV_LIBS})</pre>
   <p>test.cppのビルド</p>
-  <pre>
+  <pre>
   %mkdir build
   %cmake ..
   %make</pre>

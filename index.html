@@ -57,8 +57,9 @@
     -D WITH_OPENGL=ON \
     -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-4.5.1/modules ..
     %make -j8
+    %make install
     %cd ~</pre>
-  <p>仮想環境に入り、pythonでCV2の確認をする。</p>
+  <h3>仮想環境に入り、pythonでCV2の確認をする。</h3>
   <pre>
   %source /tensor/bin/activate
   (tensor)%python
@@ -68,7 +69,7 @@
   >>>exit(0)
   (tensor)%deactivate
   %</pre>
-  <p>cppプログラムのビルド、test.cpp、CMakeLists.txtはファイルを作成する。</p>
+  <h3>cppプログラムのビルド、test.cpp、CMakeLists.txtはファイルを作成する。</h3>
   <pre>
     //test.cpp
     #include <iostream>

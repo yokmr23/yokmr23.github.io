@@ -1,15 +1,26 @@
-img{
-    display:block;
-    margin:0 auto;
-    width:200px;
+html {
+  background-color: #a8d1f7;
 }
 body{
-  background: rgb(255, 255, 255);
-  margin: 5%;
+  width: 800px;
+  margin: 0 auto;
+  background-color: #efe7fd;
+  padding: 0 20px 20px 20px;
+  border: 2px solid black;
 }
-pre {
+.pre-2 {
   background-color: black;
   color:rgb(210, 250, 210);
   margin-left: 2em;
+  margin-right: 2em;
   overflow: auto;
+  line-height: 1.4;
+}
+.pre-1{
+  background-color: rgb(0, 0, 0);
+  color:rgb(210, 250, 210);
+  margin-left: 0em;
+  margin-right:2em;
+  overflow: auto;
+  line-height: 1.4;
 }

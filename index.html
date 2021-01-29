@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang='ja'>
-<head>
-<title>M1 mac opencv python c++</title>
-<link href="styles/style.css" rel="stylesheet" type="text/css">
+<head><link href="styles/style1.css" rel="stylesheet" type="text/css">
 </head>
+<title>M1 mac OpenCV Python C++</title>
 <body>
-  <H1>M1 mac opencv python c++</H1>
+  <H1>M1 macにopencvをソースからインストール</H1>
   <h3>mac 必要ソフトインストール</h3>
     <ol>
       <li>Command Line Tool for Xcodeをインストールする。</li>
       <li>homebrewを/opt/homebrew下にインストールする。</li>
       <li>cmake、qt、ffmpegをインストールする。</li>
+      <li>command line toolのpython3.8.2でtensor仮想環境を作る。</li>
+      <pre class="pre-1">
+/Library/Developer/CommandLineTools/bin/python3 -m venv /Users/username/.virtualenvs/tensor</pre>
       <li>macに最適化されたtensorflow_macosをインストールする。</li>
-      <ul>
-        <li>command line toolのpython3.8.2でtensor仮想環境を作る。</li>
-        <li>/Library/Developer/CommandLineTools/bin/python3 -m venv /Users/username/.virtualenvs/tensor </li>
-        <li>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)" </li>
-                を実行する。<br>
-        <li>仮想環境ディレクトリを聞かれるので/Users/username/.virtualevnvs/tennsor <li>
+      <pre class="pre-1">
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)"</pre>
+      <li>仮想環境ディレクトリを聞かれるので/Users/username/.virtualevnvs/tennsor <li>
                これでnumpy 1.18.4もインストールされる。<br>
-        </li>
-      </ul>
+      </li>
     </ol>
         
     <h3>opencvをダウンロード</h3>
@@ -31,7 +29,7 @@
 
     <p>ディレクトリはそれぞれopencv-4.5.1及びopencv_contrib-4.5.1であった。<br>
         opencvのインストール先を~/installation/opencvにする。<br>
-    <pre>
+    <pre class="pre-2">
     %mkdir installation
     %cd opencv-4.5.1
     %mkdir build
@@ -60,7 +58,7 @@
     %make install
     %cd ~</pre>
   <h3>仮想環境に入り、pythonでCV2の確認をする。</h3>
-  <pre>
+  <pre class="pre-2">
   %source .virtualenvs/tensor/bin/activate
   (tensor)%python
   >>>import cv2
@@ -70,7 +68,7 @@
   (tensor)%deactivate
   %</pre>
   <h3>cppプログラムのビルド、test.cpp、CMakeLists.txtはファイルを作成する。</h3>
-  <pre>
+  <pre class="pre-2">
     //test.cpp
     #include &lt;iostream&gt;
     #include "opencv2/opencv.hpp"
@@ -90,29 +88,28 @@
         cv::destroyAllWindows();
         return 0;
       }</pre>
-  <pre>
+  <pre class="pre-2">
   #CMakeLists.txt
   cmake_minimum_required(VERSION 3.1)
   project( test100 )
   SET(OpenCV_DIR ~/installation/opencv/lib/cmake/opencv4)
   find_package(OpenCV REQUIRED)
-  include_directries(${OPENCV_INCLUDE_DIRS})
   add_executable( test test.cpp )
+  include_directies(${OPENCV_INCLUDE_DIRS})
   target_link_libraries(test ${OpenCV_LIBS})</pre>
   <h3>test.cppのビルド、実行</h3>
-  <pre>
+  <pre class="pre-2">
   %mkdir build
-  %cd build
   %cmake ..
   %make
-  %cd ../
-  %build/test </pre>
-<p>参考</p>
+  %cd ..
+  %build/test</pre>
+  <p>参考</p>
 <ul>
   奥村　晴彦様の<a href="https://oku.edu.mie-u.ac.jp/~okumura/macosx/m1.html">M1 MAC</a>
 </ul>
 <footer>
-<p>2020/01/28 by kimura</p>
+<p>2020/01/29 by kimura</p>
 </footer>
 </body>
 </html>

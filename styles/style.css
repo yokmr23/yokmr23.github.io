@@ -24,3 +24,9 @@ body{
   overflow: auto;
   line-height: 1.4;
 }
+h1{
+  font-size:48px;
+  text-align:center;
+  color: black;
+  background-color:rgb(216, 214, 214);
+}

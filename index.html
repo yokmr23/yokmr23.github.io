@@ -71,6 +71,7 @@
   %</pre>
   <h3>cppプログラムのビルド、test.cpp、CMakeLists.txt ファイルを作成する。</h3>
   <pre class="pre-2">
+  <code>
     //test.cpp
     #include &lt;iostream&gt;
     #include "opencv2/opencv.hpp"
@@ -89,8 +90,8 @@
         int k = cv::waitKey(0);
         cv::destroyAllWindows();
         return 0;
-      }</pre>
-  <pre class="pre-2">
+      }</code></pre>
+  <pre class="pre-2"><code>
   #CMakeLists.txt
   cmake_minimum_required(VERSION 3.1)
   project( test100 )
@@ -98,14 +99,14 @@
   find_package(OpenCV REQUIRED)
   add_executable( test test.cpp )
   include_directies(${OPENCV_INCLUDE_DIRS})
-  target_link_libraries(test ${OpenCV_LIBS})</pre>
+  target_link_libraries(test ${OpenCV_LIBS})</code></pre>
   <h3>test.cppのビルド、実行</h3>
-  <pre class="pre-2">
+  <pre class="pre-2"><code>
   %mkdir build
   %cmake ..
   %make
   %cd ..
-  %build/test</pre>
+  %build/test</code></pre>
   <p>参考</p>
 <ul>
   奥村　晴彦様の<a href="https://oku.edu.mie-u.ac.jp/~okumura/macosx/m1.html">M1 MAC</a>

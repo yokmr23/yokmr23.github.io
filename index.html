@@ -10,24 +10,24 @@
   <h3>mac 必要ソフトインストール</h3>
     <ol>
       <li>Command Line Tool for Xcodeをインストールする。</li>
-      <li>homebrewを/opt/homebrew下にインストールする。</li>
+      <li>homebrewを<code>/opt/homebrew</code>下にインストールする。</li>
       <li>cmake、qt、ffmpegをインストールする。</li>
       <li>command line toolのpython3.8.2でtensor仮想環境を作る。</li>
       <pre class="pre-1">
-/Library/Developer/CommandLineTools/bin/python3 -m venv /Users/username/.virtualenvs/tensor</pre>
+<code>/Library/Developer/CommandLineTools/bin/python3 -m venv /Users/username/.virtualenvs/tensor</code></pre>
       <li>macに最適化されたtensorflow_macosをインストールする。</li>
       <pre class="pre-1">
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)"</pre>
-      <li>仮想環境ディレクトリを聞かれるので/Users/username/.virtualevnvs/tennsor <li>
+<code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)"</code></pre>
+      <li>仮想環境ディレクトリを聞かれるので<code>/Users/username/.virtualevnvs/tennsor</code> <li>
                これでnumpy 1.18.4もインストールされる。<br>
       </li>
     </ol>
         
     <h3>opencvをダウンロード</h3>
     <pre>
-    https://github.com/opencv/opencv.git　　        から最新バージョンをダウンロードする。
-    https://github.com/opencv/opencv_contrib.git　　から最新バージョンをダウンロードする。</pre>
-    <H3>DownLoadsホルダーから/Users/usernameへそれぞれ移動する。</h3>
+    <code>https://github.com/opencv/opencv.git</code>　　        から最新バージョンをダウンロードする。
+    <code>https://github.com/opencv/opencv_contrib.git</code>　　から最新バージョンをダウンロードする。</pre>
+  <H3>DownLoadsホルダーから<code>/Users/username</code>へそれぞれ移動する。</h3>
 
     <p>ディレクトリはそれぞれopencv-4.5.1及びopencv_contrib-4.5.1であった。<br>
         opencvのインストール先を~/installation/opencvにする。<br>

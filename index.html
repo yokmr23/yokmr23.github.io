@@ -31,7 +31,7 @@
 
     <p>ディレクトリはそれぞれopencv-4.5.1及びopencv_contrib-4.5.1であった。<br>
         opencvのインストール先を~/installation/opencvにする。<br>
-    <pre class="pre-2">
+  <pre class="pre-2"><code>
     %mkdir installation
     %cd opencv-4.5.1
     %mkdir build
@@ -58,9 +58,9 @@
     -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-4.5.1/modules ..
     %make -j8
     %make install
-    %cd ~</pre>
+    %cd ~</code></pre>
   <h3>仮想環境に入り、pythonでCV2の確認をする。</h3>
-  <pre class="pre-2">
+  <pre class="pre-2"><code>
   %source .virtualenvs/tensor/bin/activate
   (tensor)%python
   >>>import cv2
@@ -68,10 +68,9 @@
   >>>'4.5.1'
   >>>exit(0)
   (tensor)%deactivate
-  %</pre>
+  %</code></pre>
   <h3>cppプログラムのビルド、test.cpp、CMakeLists.txt ファイルを作成する。</h3>
-  <pre class="pre-2">
-  <code>
+  <pre class="pre-2"><code>
     //test.cpp
     #include &lt;iostream&gt;
     #include "opencv2/opencv.hpp"
